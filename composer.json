@@ -27,7 +27,7 @@
         "psr-4": {
             "Tests\\": "tests/",
             "Modules\\": "Modules/",
-            "Package\\": "Package/",
+            "Package\\": "Package/"
         }
     },
     "scripts": {

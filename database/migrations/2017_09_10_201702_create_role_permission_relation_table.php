@@ -13,17 +13,17 @@ class CreateRolePermissionRelationTable extends Migration
      */
     public function up()
     {
-        Schema::connection()->create('role_permission_relation', function (Blueprint $table) {
+        Schema::connection('common')->create('role_permission_relation', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->integer('user_id')->default(0);
-            $table->integer('role_id')->default(0);
+            $table->integer('role_id')->default(-1);
+            $table->integer('permission_id')->default(-1);
 
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
 
-            $table->index('user_id');
             $table->index('role_id');
+            $table->index('permission_id');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateRolePermissionRelationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_permission_relation');
+        Schema::connection('common')->dropIfExists('role_permission_relation');
     }
 }

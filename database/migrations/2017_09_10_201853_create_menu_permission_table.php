@@ -13,9 +13,17 @@ class CreateMenuPermissionTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_permission_relation', function (Blueprint $table) {
+        Schema::connection('common')->create('menu_permission_relation', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            
+            $table->integer('menu_id')->default(-1);
+            $table->integer('permission_id')->default(-1);
+
+            $table->integer('created_at')->default(0);
+            $table->integer('updated_at')->default(0);
+
+            $table->index('menu_id');
+            $table->index('permission_id');
         });
     }
 
@@ -26,6 +34,6 @@ class CreateMenuPermissionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_permission_relation');
+        Schema::connection('common')->dropIfExists('menu_permission_relation');
     }
 }

@@ -13,17 +13,17 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::connection('common')->create('roles', function (Blueprint $table) {
             $table->increments('id');
             
             $table->string('name')->default('');
-            $table->tinyint('state')->default(0)->comment('0.disabled, 1.enabled');
+            $table->tinyInteger('status')->default(0)->comment('0.disabled, 1.enabled');
             $table->text('extra')->comment('这里放json');
             
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
 
-            $table->index('state');
+            $table->index('status');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::connection('common')->dropIfExists('roles');
     }
 }

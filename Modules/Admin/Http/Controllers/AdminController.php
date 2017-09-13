@@ -19,6 +19,6 @@ class AdminController extends Controller
 
     public function homeAction()
     {
-        return view('admin::index');
+        return view('admin::admin.home');
     }
 }

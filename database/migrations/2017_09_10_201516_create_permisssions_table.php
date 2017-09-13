@@ -13,14 +13,14 @@ class CreatePermisssionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::connection('common')->create('permissions', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name')->default('');
-            $table->string('slug')->default('');
-            $table->string('module')->default('')->comment('所属模块');
-            $table->string('url')->default('');
-            $table->tinyint('state')->default(0)->comment('0.disabled, 1.enabled');
+            $table->string('name', 128)->default('');
+            $table->string('slug', 128)->default('');
+            $table->string('module', 64)->default('')->comment('所属模块');
+            $table->string('url', 128)->default('');
+            $table->tinyInteger('status')->default(0)->comment('0.disabled, 1.enabled');
 
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
@@ -28,7 +28,7 @@ class CreatePermisssionsTable extends Migration
             $table->unique('name');
             $table->unique('slug');
             $table->unique('url');
-            $table->index('state');
+            $table->index('status');
         });
     }
 
@@ -39,6 +39,6 @@ class CreatePermisssionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::connection('common')->dropIfExists('permissions');
     }
 }

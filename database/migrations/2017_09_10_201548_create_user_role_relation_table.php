@@ -13,11 +13,11 @@ class CreateUserRoleRelationTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_role_relation', function (Blueprint $table) {
+        Schema::connection('common')->create('user_role_relation', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->integer('user_id')->default(0);
-            $table->integer('role_id')->default(0);
+            $table->integer('user_id')->default(-1);
+            $table->integer('role_id')->default(-1);
 
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
@@ -34,6 +34,6 @@ class CreateUserRoleRelationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_role_relation');
+        Schema::connection('common')->dropIfExists('user_role_relation');
     }
 }
