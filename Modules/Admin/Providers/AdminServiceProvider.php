@@ -34,7 +34,7 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerMiddleware();
     }
 
     /**
@@ -96,6 +96,17 @@ class AdminServiceProvider extends ServiceProvider
     {
         if (! app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/Database/factories');
+        }
+    }
+
+    public function registerMiddleware()
+    {
+        $file_path = __DIR__.'/../Config/middleware.php';
+        if(!file_exists($file_path)) return;
+
+        $router = \App::make('router');
+        foreach(require_once($file_path) as $key => $val){
+            $router->aliasMiddleware($key, $val);
         }
     }
 

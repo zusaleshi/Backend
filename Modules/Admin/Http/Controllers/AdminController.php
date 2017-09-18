@@ -5,15 +5,12 @@ use Illuminate\Routing\Controller;
 class AdminController extends Controller
 {
     private $request;
-
     private $session;
-
     private $repository;
 
     public function __construct()
     {
         $this->request = request();
-
         $this->session = session();
     }
 

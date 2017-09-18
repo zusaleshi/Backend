@@ -15,7 +15,7 @@
 if (!app()->routesAreCached()) {
     //require __DIR__ . '/Http/routes.php';
     Route::group([
-        'middleware' => ['web'], 
+        'middleware' => ['web', 'auth.admin'], 
         'prefix' => 'admin', 
         'namespace' => 'Modules\Admin\Http\Controllers'
     ], 

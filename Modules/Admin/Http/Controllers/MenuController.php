@@ -13,13 +13,12 @@ class MenuController extends Controller
     public function __construct()
     {
         $this->request = request();
-
         $this->session = session();
     }
 
     public function listMenuAction()
     {
-
+        
     }
 
     public function createMenuAction()
