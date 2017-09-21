@@ -44,7 +44,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if ($request->expectsJson()) {
+            return response()->json([
+                    'response_code' => 'fail', 
+                    'response_data' => '数据异常,请稍后再试'
+                ]);
+        } else {
+            return parent::render($request, $exception);
+        }
     }
 
     /**

@@ -25,4 +25,12 @@ class Permission extends Model
         );
     }
 
+    public function menus()
+    {
+        return $this->hasMany(
+            \Modules\Admin\Models\Menu::CLASS,
+            'permission_id',
+            'id'
+        );
+    }
 }

@@ -5,9 +5,7 @@ use Illuminate\Routing\Controller;
 class MenuController extends Controller
 {
     private $request;
-
     private $session;
-
     private $repository;
 
     public function __construct()

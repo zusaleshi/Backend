@@ -19,7 +19,7 @@ class CreateMenuTable extends Migration
             $table->integer('parent_id')->default(-1);
             $table->string('name')->default('')->comment('菜单名字');
             $table->string('url')->default('')->comment('url');
-            $table->string('slug')->default('')->comment('菜单权限');
+            $table->string('permission_id')->default('')->comment('菜单权限');
             $table->string('icon')->default('');
             $table->tinyInteger('status')->default(0)->commet('1.normal, 0.disabled');
             $table->tinyInteger('index')->default(0)->comment('排序index');
